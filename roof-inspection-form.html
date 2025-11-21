@@ -262,6 +262,25 @@
       gap: 8px;
     }
 
+    .condition-hint {
+      font-size: 0.85rem;
+      color: #777;
+      margin: 6px 0 12px;
+      text-align: center;
+    }
+
+    .condition-label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .condition-label small {
+      font-size: 0.65rem;
+      margin-top: 2px;
+      font-weight: 500;
+    }
+
     .star-rating input {
       position: absolute;
       opacity: 0;
@@ -337,13 +356,6 @@
       background: #c01f2a;
     }
 
-    .form-note {
-      margin-top: 12px;
-      text-align: center;
-      font-size: 0.9rem;
-      color: var(--secondary);
-    }
-
     .section-divider {
       width: 80px;
       height: 4px;
@@ -380,7 +392,7 @@
     <form id="jvRoofingForm" method="POST" aria-live="polite">
       <div class="form-header">
         <div class="logo">
-          <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDQwMCAyMzMuMyI+CiAgPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDI5LjEuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDIuMS4wIEJ1aWxkIDE0MikgIC0tPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuc3QwIHsKICAgICAgICBmaWxsOiAjZTUyOTMzOwogICAgICB9CgogICAgICAuc3QxIHsKICAgICAgICBmaWxsOiAjMzQzNTg1OwogICAgICB9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICA8Zz4KICAgIDxwb2x5Z29uIGNsYXNzPSJzdDEiIHBvaW50cz0iMzkuNiA4MS42IDgwLjggODEuNiAxMjMuNiAxMjMuMSA2OS4xIDEyMy4xIDQxLjMgOTQuOSAxMy4zIDEyMy4xIDAgMTIzLjEgMzkuNiA4MS42Ii8+CiAgICA8Zz4KICAgICAgPHBvbHlnb24gY2xhc3M9InN0MSIgcG9pbnRzPSIzMDIuOCAyNCAyNzIuMSAyNCAyMzcuNyA2MC41IDIzNy43IDAgMjA5LjIgOS40IDIwOS4yIDQ2LjIgMjAzLjkgMzUuMSAxMTAuMiA0Ni4yIDE0Ny43IDQ2LjIgMTk2LjQgOTIuOSAxNDcuNyA1MS44IDc2LjggNTEuOCA1Mi40IDc3LjcgNjUuNCA3Ny43IDc3LjQgNjQuNyAxMzcuMiAxMjMuMSAyMjQuNiAxMjMuMSAzMDIuOCA0MC41IDM4OS42IDEyNy44IDM4OS42IDIyMi44IDAgMjIyLjggMCAyMzMuMyA0MDAgMjMzLjMgNDAwIDEyMy4xIDMwMi44IDI0Ii8+CiAgICAgIDxnPgogICAgICAgIDxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iNDIuNyAxMDAuOCAyMS42IDEyMy4xIDE3LjkgMTIzLjEgNDAuOSA5OS4xIDQyLjcgMTAwLjgiLz4KICAgICAgICA8Zz4KICAgICAgICAgIDxyZWN0IGNsYXNzPSJzdDAiIHg9IjM4LjUiIHk9IjEwOC44IiB3aWR0aD0iNS43IiBoZWlnaHQ9IjUuNyIvPgogICAgICAgICAgPHJlY3QgY2xhc3M9InN0MCIgeD0iNDUuOCIgeT0iMTA4LjgiIHdpZHRoPSI1LjciIGhlaWdodD0iNS43Ii8+CiAgICAgICAgICA8cmVjdCBjbGFzcz0ic3QwIiB4PSIzOC41IiB5PSIxMTciIHdpZHRoPSI1LjciIGhlaWdodD0iNS43Ii8+CiAgICAgICAgICA8cmVjdCBjbGFzcz0ic3QwIiB4PSI0NS44IiB5PSIxMTciIHdpZHRoPSI1LjciIGhlaWdodD0iNS43Ii8+CiAgICAgICAgPC9nPgogICAgICA8L2c+CiAgICA8L2c+CiAgICA8Zz4KICAgICAgPHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSIzMDMuMSA1My44IDI5Ny4zIDYwLjUgMzU5IDEyMy4xIDM3Mi41IDEyMy4xIDMwMy4xIDUzLjgiLz4KICAgICAgPGc+CiAgICAgICAgPHJlY3QgY2xhc3M9InN0MCIgeD0iMjgwLjgiIHk9Ijg3LjMiIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIvPgogICAgICAgIDxyZWN0IGNsYXNzPSJzdDAiIHg9IjI5OC45IiB5PSI4Ny4zIiB3aWR0aD0iMTMiIGhlaWdodD0iMTMiLz4KICAgICAgICA8cmVjdCBjbGFzcz0ic3QwIiB4PSIyODAuOCIgeT0iMTA2LjEiIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIvPgogICAgICAgIDxyZWN0IGNsYXNzPSJzdDAiIHg9IjI5OC45IiB5PSIxMDYuMSIgd2lkdGg9IjEzIiBoZWlnaHQ9IjEzIi8+CiAgICAgIDwvZz4KICAgIDwvZz4KICA8L2c+CiAgPGc+CiAgICA8cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjM4MS4yIDE0MCA4OC42IDE0MCA4OC42IDE0MCA4OC4xIDE0MCA4NS4xIDE0Ny43IDkxLjMgMTU0LjcgOTMuOSAxNDguMSAzODEuMiAxNDguMSAzODEuMiAxNDAiLz4KICAgIDxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iODMuMSAxNTIgNjguNCAxODcuNSA0OS43IDE0MCA0MC4zIDE0MCA0MC4zIDE0OC4xIDQzLjYgMTQ4LjEgNjUgMjAzLjcgNzIuMyAyMDMuNyA4OS40IDE1OSA4My4xIDE1MiIvPgogICAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTI3LjUsMTc4YzAsOS4zLTIuNiwxNS05LjQsMTUuNy00LjUuNS04LjktMS45LTEzLjItNi41bC00LjksNy4zYzYuMiw3LjksMTEuNiw5LjYsMTksOS4xLDE3LjctMS4xLDE4LjUtMTEsMTguNS0yNC4zdi0yNi45aC05Ljl2MjUuNloiLz4KICAgIDxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMzcuNSAxNDguMSAzNy41IDE0MCAxMC44IDE0MCAxNy4zIDE0OC4xIDI3LjUgMTQ4LjEgMzcuNSAxNDguMSIvPgogIDwvZz4KICA8Zz4KICAgIDxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0xMDYuNSwxODguOXYxNC44aC03Ljh2LTM3aDE2LjNjOC4xLDAsMTIuNCw0LjQsMTIuNCwxMC4ycy0yLjcsNy42LTUuNCw4LjhjMS44LjcsNC42LDIuNiw0LjYsOS4ydjEuOGMwLDIuNSwwLDUuMy41LDdoLTcuNmMtLjYtMS42LS44LTQuNC0uOC04LjN2LS41YzAtNC0xLTYtNy02aC01LjNaTTEwNi41LDE4Mi41aDYuN2M0LjQsMCw2LjEtMS43LDYuMS00LjdzLTItNC43LTUuOS00LjdoLTYuOXY5LjVaIi8+CiAgICA8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMTU4LjgsMTg5LjhjMCw4LjQtNS4xLDE0LjYtMTMuOSwxNC42cy0xMy42LTYuMi0xMy42LTE0LjUsNS4yLTE0LjcsMTQtMTQuNywxMy41LDUuOCwxMy41LDE0LjVaTTEzOS4xLDE4OS44YzAsNS40LDIuMyw4LjUsNiw4LjVzNS45LTMuMiw1LjktOC41LTIuMS04LjUtNi04LjUtNS45LDIuNi01LjksOC41WiIvPgogICAgPHBhdGggY2xhc3M9InN0MSIgZD0iTTE5MC4zLDE4OS44YzAsOC40LTUuMSwxNC42LTEzLjksMTQuNnMtMTMuNi02LjItMTMuNi0xNC41LDUuMi0xNC43LDE0LTE0LjcsMTMuNSw1LjgsMTMuNSwxNC41Wk0xNzAuNiwxODkuOGMwLDUuNCwyLjMsOC41LDYsOC41czUuOS0zLjIsNS45LTguNS0yLjEtOC41LTYtOC41LTUuOSwyLjYtNS45LDguNVoiLz4KICAgIDxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0xOTYuOCwyMDMuN3YtMjJoLTQuMXYtNS44aDQuMXYtMi40YzAtNS43LDIuOC05LjUsOC45LTkuNXMyLjguMSwzLjUuM3Y2LjFjLS40LDAtMS0uMS0xLjYtLjEtMi4zLDAtMy4xLjgtMy4xLDMuOHYxLjhoNC44djUuOGgtNC44djIyaC03LjdaIi8+CiAgICA8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMjEzLjQsMTcxLjR2LTYuOWg3Ljd2Ni45aC03LjdaTTIxMy40LDE3NS45aDcuN3YyNy44Ii8+CiAgPC9nPgo8L3N2Zz4K" alt="JV Roofing full color logo">
+          <!-- Logo will be added natively -->
         </div>
         <div class="logo-text">
           <strong>JV Roofing</strong>
@@ -518,17 +530,18 @@
 
         <div class="form-group" data-field data-type="radio" data-error="Rate visual condition.">
           <label>Visual Condition (1-5) <span class="required-star">*</span></label>
+          <p class="condition-hint">1 = Poor | 2 = Fair | 3 = Good | 4 = Very Good | 5 = Excellent</p>
           <div class="star-rating">
             <input type="radio" id="visualCondition1" name="visualCondition" value="1" required>
-            <label for="visualCondition1">1</label>
+            <label for="visualCondition1"><span class="condition-label">1<br><small>Poor</small></span></label>
             <input type="radio" id="visualCondition2" name="visualCondition" value="2">
-            <label for="visualCondition2">2</label>
+            <label for="visualCondition2"><span class="condition-label">2<br><small>Fair</small></span></label>
             <input type="radio" id="visualCondition3" name="visualCondition" value="3">
-            <label for="visualCondition3">3</label>
+            <label for="visualCondition3"><span class="condition-label">3<br><small>Good</small></span></label>
             <input type="radio" id="visualCondition4" name="visualCondition" value="4">
-            <label for="visualCondition4">4</label>
+            <label for="visualCondition4"><span class="condition-label">4<br><small>Very Good</small></span></label>
             <input type="radio" id="visualCondition5" name="visualCondition" value="5">
-            <label for="visualCondition5">5</label>
+            <label for="visualCondition5"><span class="condition-label">5<br><small>Excellent</small></span></label>
           </div>
           <small class="group-error"></small>
         </div>
@@ -728,8 +741,8 @@
         </div>
       </section>
 
-      <div class="footer-info" aria-label="JV Roofing guarantees">
-        <h3>JV Roofing Guarantees & Certifications</h3>
+      <div class="footer-info" aria-label="JV Roofing credentials">
+        <h3>Our Credentials</h3>
         <ul>
           <li>10 Years Workmanship Guarantee</li>
           <li>50 Years Material Warranty</li>
@@ -742,7 +755,6 @@
       </div>
 
       <div class="submit-area">
-        <p class="form-note">Native submit button for GHL capture • Touch-friendly • High contrast</p>
         <div class="success-message" id="successMessage">Thanks! Submission sent.</div>
       </div>
     </form>
