@@ -1,0 +1,9 @@
+<svg width="320" height="118" viewBox="0 0 320 118" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="118" rx="18" fill="#FFFFFF"/>
+  <path d="M28 82L94 30L160 82" stroke="#343585" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M56 82V56H132V82" fill="#E52933" stroke="#E52933" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M190 82H212L230 48L248 82H270L238 28H222L190 82Z" fill="#E52933"/>
+  <path d="M276 82H298V40H276V82Z" fill="#343585"/>
+  <path d="M284 36C290.627 36 296 30.6274 296 24C296 17.3726 290.627 12 284 12C277.373 12 272 17.3726 272 24C272 30.6274 277.373 36 284 36Z" fill="#E52933"/>
+  <text x="180" y="100" fill="#343585" font-size="32" font-weight="700" font-family="Montserrat, Arial, sans-serif">JV ROOFING</text>
+</svg>

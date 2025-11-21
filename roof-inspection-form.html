@@ -15,7 +15,7 @@
       --light-gray: #E8E8E8;
       --success: #1d924b;
       --error: #e52933;
-      --background: #f8f8f8;
+      --background: #ffffff;
     }
 
     * {
@@ -50,25 +50,25 @@
 
     .form-header {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 16px;
-      margin-bottom: 12px;
+      gap: 12px;
+      margin-bottom: 16px;
+      text-align: center;
     }
 
     .logo {
-      width: 60px;
-      height: 60px;
-      flex-shrink: 0;
-      border-radius: 12px;
-      background: var(--secondary);
+      width: 100%;
+      max-width: 220px;
       display: flex;
-      align-items: center;
       justify-content: center;
     }
 
-    .logo svg {
-      width: 52px;
-      height: 52px;
+    .logo img {
+      width: 100%;
+      height: auto;
+      max-height: 100px;
+      object-fit: contain;
     }
 
     .logo-text {
@@ -379,13 +379,8 @@
   <div class="wrapper">
     <form id="jvRoofingForm" method="POST" aria-live="polite">
       <div class="form-header">
-        <div class="logo" aria-label="JV Roofing Logo">
-          <svg viewBox="0 0 120 120" role="img" aria-labelledby="jvLogoTitle">
-            <title id="jvLogoTitle">JV Roofing</title>
-            <rect x="10" y="50" width="100" height="60" rx="8" fill="#e52933"></rect>
-            <path d="M15 60 L60 25 L105 60" fill="#fff" opacity="0.9"></path>
-            <text x="60" y="95" text-anchor="middle" font-size="36" fill="#343585" font-weight="700">JV</text>
-          </svg>
+        <div class="logo">
+          <img src="JV_rofiing_logo_Full_color__1_.svg" alt="JV Roofing full color logo">
         </div>
         <div class="logo-text">
           <strong>JV Roofing</strong>
@@ -402,8 +397,14 @@
         <span class="section-meta">Section 1 of 10</span>
         <h2>Client Info</h2>
         <div class="form-group" data-field>
-          <label for="fullName">Full Name <span class="required-star">*</span></label>
-          <input type="text" id="fullName" name="fullName" autocomplete="name" required data-next="#phone" placeholder="Client full name">
+          <label for="firstName">First Name <span class="required-star">*</span></label>
+          <input type="text" id="firstName" name="firstName" autocomplete="given-name" required data-next="#lastName" placeholder="Client first name">
+          <span class="status-icon" aria-hidden="true"></span>
+          <small class="error-message"></small>
+        </div>
+        <div class="form-group" data-field>
+          <label for="lastName">Last Name <span class="required-star">*</span></label>
+          <input type="text" id="lastName" name="lastName" autocomplete="family-name" required data-next="#phone" placeholder="Client last name">
           <span class="status-icon" aria-hidden="true"></span>
           <small class="error-message"></small>
         </div>
@@ -741,7 +742,6 @@
       </div>
 
       <div class="submit-area">
-        <button type="submit">Submit Inspection</button>
         <p class="form-note">Native submit button for GHL capture • Touch-friendly • High contrast</p>
         <div class="success-message" id="successMessage">Thanks! Submission sent.</div>
       </div>
