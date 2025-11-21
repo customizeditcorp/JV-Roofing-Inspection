@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JV Roofing | Field Inspection Form</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #e52933;
+      --secondary: #343585;
+      --gray: #4A4A4A;
+      --light-gray: #E8E8E8;
+      --success: #1d924b;
+      --error: #e52933;
+      --background: #f8f8f8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--gray);
+      background: var(--background);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrapper {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    form {
+      width: 100%;
+      max-width: 480px;
+      background: #fff;
+      border-radius: 18px;
+      padding: 28px 24px 40px;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .form-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .logo {
+      width: 60px;
+      height: 60px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      background: var(--secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo svg {
+      width: 52px;
+      height: 52px;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .logo-text strong {
+      font-size: 1.25rem;
+      color: var(--secondary);
+    }
+
+    .logo-text span {
+      font-size: 0.95rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .priority-banner {
+      margin: 16px 0 20px;
+      padding: 16px;
+      background: #fff7f7;
+      border: 2px solid var(--primary);
+      border-radius: 12px;
+      color: var(--primary);
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .priority-banner p {
+      margin: 4px 0 0;
+      font-size: 0.92rem;
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    section {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-meta {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--secondary);
+      margin-bottom: 6px;
+    }
+
+    section h2 {
+      margin: 0 0 12px;
+      font-size: 1.25rem;
+      color: var(--secondary);
+    }
+
+    section p.description {
+      margin: 0 0 16px;
+      color: #5a5a5a;
+      font-size: 0.95rem;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #4a4a4a;
+      margin-bottom: 6px;
+    }
+
+    .required-star {
+      color: var(--primary);
+      font-size: 1rem;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 2px solid rgba(229, 41, 51, 0.4);
+      border-radius: 12px;
+      padding: 12px 48px 12px 16px;
+      font-size: 1rem;
+      min-height: 52px;
+      background: #fff;
+      transition: border 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+      padding-right: 16px;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(229, 41, 51, 0.18);
+    }
+
+    .option-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option-pill {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border: 2px solid rgba(52, 53, 133, 0.35);
+      border-radius: 14px;
+      cursor: pointer;
+      min-height: 48px;
+    }
+
+    .option-pill input {
+      width: 24px;
+      height: 24px;
+      min-height: 24px;
+      margin: 0;
+      flex-shrink: 0;
+    }
+
+    .option-pill span {
+      font-weight: 600;
+      color: var(--secondary);
+    }
+
+    .checkbox-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .status-icon {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .status-icon.valid {
+      color: var(--success);
+      opacity: 1;
+      content: "✔";
+    }
+
+    .status-icon.error {
+      color: var(--error);
+      opacity: 1;
+      content: "!";
+    }
+
+    .error-message {
+      margin-top: 6px;
+      font-size: 0.85rem;
+      color: var(--error);
+      min-height: 18px;
+    }
+
+    .char-counter {
+      display: flex;
+      justify-content: flex-end;
+      font-size: 0.8rem;
+      color: #777;
+      margin-top: 4px;
+    }
+
+    .star-rating {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .star-rating input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+    }
+
+    .star-rating label {
+      flex: 1;
+      text-align: center;
+      border: 2px solid rgba(52, 53, 133, 0.35);
+      border-radius: 12px;
+      padding: 12px 0;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--secondary);
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .star-rating input:checked + label,
+    .star-rating label:hover {
+      background: rgba(229, 41, 51, 0.08);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .flex-row {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .footer-info {
+      margin-top: 32px;
+      padding: 20px;
+      border-radius: 16px;
+      background: #f3f4ff;
+      border: 2px solid rgba(52, 53, 133, 0.15);
+      color: var(--secondary);
+      font-size: 0.95rem;
+    }
+
+    .footer-info h3 {
+      margin: 0 0 12px;
+      font-size: 1.05rem;
+      color: var(--secondary);
+    }
+
+    .footer-info ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .submit-area {
+      margin-top: 28px;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      border: none;
+      border-radius: 16px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 16px;
+      min-height: 56px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    button[type="submit"]:active {
+      background: #c01f2a;
+    }
+
+    .form-note {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--secondary);
+    }
+
+    .section-divider {
+      width: 80px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(52, 53, 133, 0.2);
+      margin: 16px 0;
+    }
+
+    .group-error {
+      color: var(--error);
+      font-size: 0.85rem;
+      margin-top: 6px;
+    }
+
+    .success-message {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: #e8f8ef;
+      color: var(--success);
+      font-weight: 600;
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      form {
+        padding: 36px 48px 48px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <form id="jvRoofingForm" method="POST" aria-live="polite">
+      <div class="form-header">
+        <div class="logo" aria-label="JV Roofing Logo">
+          <svg viewBox="0 0 120 120" role="img" aria-labelledby="jvLogoTitle">
+            <title id="jvLogoTitle">JV Roofing</title>
+            <rect x="10" y="50" width="100" height="60" rx="8" fill="#e52933"></rect>
+            <path d="M15 60 L60 25 L105 60" fill="#fff" opacity="0.9"></path>
+            <text x="60" y="95" text-anchor="middle" font-size="36" fill="#343585" font-weight="700">JV</text>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <strong>JV Roofing</strong>
+          <span>Field Inspection Form</span>
+        </div>
+      </div>
+
+      <div class="priority-banner">
+        PRIORITY: REAL-TIME FIELD INSPECTION (CRITICAL)
+        <p>Primary devices: iPad + smartphone | Touch-first workflow</p>
+      </div>
+
+      <section>
+        <span class="section-meta">Section 1 of 10</span>
+        <h2>Client Info</h2>
+        <div class="form-group" data-field>
+          <label for="fullName">Full Name <span class="required-star">*</span></label>
+          <input type="text" id="fullName" name="fullName" autocomplete="name" required data-next="#phone" placeholder="Client full name">
+          <span class="status-icon" aria-hidden="true"></span>
+          <small class="error-message"></small>
+        </div>
+        <div class="form-group" data-field>
+          <label for="phone">Phone <span class="required-star">*</span></label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" required data-next="#email" pattern="^\\+?[0-9\\s()-]{7,}$" placeholder="+1 (555) 123-4567">
+          <span class="status-icon" aria-hidden="true"></span>
+          <small class="error-message"></small>
+        </div>
+        <div class="form-group" data-field>
+          <label for="email">Email <span class="required-star">*</span></label>
+          <input type="email" id="email" name="email" autocomplete="email" required data-next="#address" placeholder="name@email.com">
+          <span class="status-icon" aria-hidden="true"></span>
+          <small class="error-message"></small>
+        </div>
+        <div class="form-group" data-field>
+          <label for="address">Address</label>
+          <input type="text" id="address" name="address" autocomplete="street-address" data-next="#zone" placeholder="Street, City, ZIP">
+          <span class="status-icon" aria-hidden="true"></span>
+        </div>
+      </section>
+
+      <section>
+        <span class="section-meta">Section 2 of 10</span>
+        <h2>Location & Context</h2>
+        <div class="form-group" data-field>
+          <label for="zone">Geographic Zone <span class="required-star">*</span></label>
+          <select id="zone" name="zone" required data-next="#propertyAge">
+            <option value="">Select zone</option>
+            <option>Rural</option>
+            <option>Urban</option>
+            <option>Coastal SLO</option>
+          </select>
+          <span class="status-icon" aria-hidden="true"></span>
+          <small class="error-message"></small>
+        </div>
+        <div class="form-group" data-field>
+          <label for="propertyAge">Property Age <span class="required-star">*</span></label>
+          <select id="propertyAge" name="propertyAge" required data-next="#solarFull">
+            <option value="">Select age</option>
+            <option>&lt;5 years</option>
+            <option>5-15 years</option>
+            <option>15-30 years</option>
+            <option>&gt;30 years</option>
+          </select>
+          <span class="status-icon" aria-hidden="true"></span>
+          <small class="error-message"></small>
+        </div>
+      </section>
+
+      <section>
+        <span class="section-meta">Section 3 of 10</span>
+        <h2>Environmental Factors</h2>
+        <div class="form-group" data-field data-type="radio" data-error="Select solar exposure.">
+          <label>Solar Exposure <span class="required-star">*</span></label>
+          <div class="option-list">
+            <label class="option-pill">
+              <input type="radio" id="solarFull" name="solarExposure" value="Full sun" required data-next="#treesYes">
+              <span>Full sun</span>
+            </label>
+            <label class="option-pill">
+              <input type="radio" name="solarExposure" value="Shaded" data-next="#treesYes">
+              <span>Shaded</span>
+            </label>
+            <label class="option-pill">
+              <input type="radio" name="solarExposure" value="Partial" data-next="#treesYes">
+              <span>Partial</span>
+            </label>
+          </div>
+          <small class="group-error"></small>
+        </div>
+
+        <div class="form-group" data-field data-type="radio" data-error="Select a tree risk option.">
+          <label>Trees nearby that could fall? <span class="required-star">*</span></label>
+          <div class="option-list">
+            <label class="option-pill">
+              <input type="radio" id="treesYes" name="treeRisk" value="Yes" required data-next="#treeDescription">
+              <span>Yes</span>
+            </label>
+            <label class="option-pill">
+              <input type="radio" name="treeRisk" value="No" data-next="#treeDescription">
+              <span>No</span>
+            </label>
+          </div>
+          <small class="group-error"></small>
+        </div>
+
+        <div class="form-group" data-field>
+          <label for="treeDescription">If yes, describe risk</label>
+          <textarea id="treeDescription" name="treeRiskDescription" placeholder="Describe observed tree hazards"></textarea>
+        </div>
+      </section>
+
+      <section>
+        <span class="section-meta">Section 4 of 10</span>
+        <h2>Current Roof Type</h2>
+        <div class="form-group" data-field>
+          <label for="roofType">Roof Type <span class="required-star">*</span></label>
+          <select id="roofType" name="roofType" required data-next="#visualCondition1">
+            <option value="">Select roof type</option>
+            <option>Asphalt Shingles</option>
+            <option>TPO</option>
+            <option>Metal</option>
+            <option>Tile</option>
+            <option>Flat</option>
+            <option>Other</option>
+          </select>
+          <span class="status-icon" aria-hidden="true"></span>
+          <small class="error-message"></small>
+        </div>
+
+        <div class="form-group" data-field data-type="radio" data-error="Rate visual condition.">
+          <label>Visual Condition (1-5) <span class="required-star">*</span></label>
+          <div class="star-rating">
+            <input type="radio" id="visualCondition1" name="visualCondition" value="1" required>
+            <label for="visualCondition1">1</label>
+            <input type="radio" id="visualCondition2" name="visualCondition" value="2">
+            <label for="visualCondition2">2</label>
+            <input type="radio" id="visualCondition3" name="visualCondition" value="3">
+            <label for="visualCondition3">3</label>
+            <input type="radio" id="visualCondition4" name="visualCondition" value="4">
+            <label for="visualCondition4">4</label>
+            <input type="radio" id="visualCondition5" name="visualCondition" value="5">
+            <label for="visualCondition5">5</label>
+          </div>
+          <small class="group-error"></small>
+        </div>
+      </section>
+
+      <section>
+        <span class="section-meta">Section 5 of 10</span>
+        <h2>Damage Evaluation</h2>
+        <div class="form-group" data-field>
+          <label for="workType">Work Type <span class="required-star">*</span></label>
+          <select id="workType" name="workType" required data-next="#damageDescription">
+            <option value="">Select work type</option>
+            <option>Repair</option>
+            <option>Reroof</option>
+            <option>Inspection Only</option>
+            <option>New Roof</option>
+          </select>
+          <span class="status-icon" aria-hidden="true"></span>
+          <small class="error-message"></small>
+        </div>
+
+        <div class="form-group" data-field>
+          <label for="damageDescription">Damage Description <span class="required-star">*</span></label>
+          <textarea id="damageDescription" name="damageDescription" minlength="20" maxlength="500" required data-counter="damageCounter" placeholder="Detail observed damage and urgency"></textarea>
+          <div class="char-counter" id="damageCounter">0 / 500</div>
+          <small class="error-message"></small>
+        </div>
+
+        <div class="form-group" data-field>
+          <label for="affectedArea">Affected Area (m²)</label>
+          <input type="number" id="affectedArea" name="affectedArea" min="0" step="0.1" placeholder="e.g., 25">
+        </div>
+
+        <div class="form-group" data-field data-type="radio" data-error="Select leak evaluation.">
+          <label>Leak evaluated from <span class="required-star">*</span></label>
+          <div class="option-list">
+            <label class="option-pill">
+              <input type="radio" name="leakEvaluatedFrom" value="Top" required data-next="#recommendationA">
+              <span>Top</span>
+            </label>
+            <label class="option-pill">
+              <input type="radio" name="leakEvaluatedFrom" value="Bottom" data-next="#recommendationA">
+              <span>Bottom</span>
+            </label>
+            <label class="option-pill">
+              <input type="radio" name="leakEvaluatedFrom" value="Both" data-next="#recommendationA">
+              <span>Both</span>
+            </label>
+          </div>
+          <small class="group-error"></small>
+        </div>
+      </section>
+
+      <section>
+        <span class="section-meta">Section 6 of 10</span>
+        <h2>Solution Recommendation</h2>
+        <div class="form-group" data-field data-required-group="recommendation" data-error="Select one recommendation.">
+          <label>Select Recommendation <span class="required-star">*</span></label>
+          <div class="option-list">
+            <label class="option-pill">
+              <input type="radio" id="recommendationA" name="recommendation" value="Repair affected area only" required>
+              <span>Option A: Repair affected area only</span>
+            </label>
+            <label class="option-pill">
+              <input type="radio" name="recommendation" value="Repair plus temporary protection">
+              <span>Option B: Repair + Temporary protection</span>
+            </label>
+            <label class="option-pill">
+              <input type="radio" name="recommendation" value="Complete reroof">
+              <span>Option C: Complete reroof</span>
+            </label>
+          </div>
+          <small class="group-error"></small>
+        </div>
+
+        <div class="form-group" data-field>
+          <label for="technicalJustification">Technical Justification <span class="required-star">*</span></label>
+          <textarea id="technicalJustification" name="technicalJustification" required placeholder="Explain recommendation rationale"></textarea>
+          <small class="error-message"></small>
+        </div>
+      </section>
+
+      <section>
+        <span class="section-meta">Section 7 of 10</span>
+        <h2>Flashing Evaluation</h2>
+        <div class="form-group" data-field>
+          <label>Flashing Types Found</label>
+          <div class="checkbox-grid">
+            <label class="option-pill">
+              <input type="checkbox" name="flashingTypes" value="Pipe/Vent Flashing">
+              <span>Pipe/Vent Flashing</span>
+            </label>
+            <label class="option-pill">
+              <input type="checkbox" name="flashingTypes" value="Step Flashing">
+              <span>Step Flashing</span>
+            </label>
+            <label class="option-pill">
+              <input type="checkbox" name="flashingTypes" value="Valley Flashing">
+              <span>Valley Flashing</span>
+            </label>
+            <label class="option-pill">
+              <input type="checkbox" name="flashingTypes" value="Chimney Flashing">
+              <span>Chimney Flashing</span>
+            </label>
+            <label class="option-pill">
+              <input type="checkbox" name="flashingTypes" value="Other">
+              <span>Other</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group" data-field>
+          <label for="penetrations">Number of Penetrations</label>
+          <input type="number" id="penetrations" name="penetrations" min="0" placeholder="e.g., 4">
+        </div>
+
+        <div class="form-group" data-field>
+          <label for="currentMaterial">Current Material</label>
+          <select id="currentMaterial" name="currentMaterial">
+            <option value="">Select material</option>
+            <option>Copper</option>
+            <option>Aluminum</option>
+            <option>Galvanized Steel</option>
+            <option>Rubber</option>
+            <option>Unknown</option>
+          </select>
+        </div>
+
+        <div class="form-group" data-field>
+          <label for="flashingCondition">Flashing Condition</label>
+          <select id="flashingCondition" name="flashingCondition">
+            <option value="">Select condition</option>
+            <option>Good</option>
+            <option>Deteriorated</option>
+            <option>Requires replacement</option>
+          </select>
+        </div>
+      </section>
+
+      <section>
+        <span class="section-meta">Section 8 of 10</span>
+        <h2>Fascia & Details</h2>
+        <div class="form-group" data-field data-type="radio" data-error="Select fascia requirement.">
+          <label>Does Fascia require replacement? <span class="required-star">*</span></label>
+          <div class="option-list">
+            <label class="option-pill">
+              <input type="radio" name="fasciaReplace" value="Yes" required data-next="#fasciaNotes">
+              <span>Yes</span>
+            </label>
+            <label class="option-pill">
+              <input type="radio" name="fasciaReplace" value="No" data-next="#fasciaNotes">
+              <span>No</span>
+            </label>
+            <label class="option-pill">
+              <input type="radio" name="fasciaReplace" value="Partial" data-next="#fasciaNotes">
+              <span>Partial</span>
+            </label>
+          </div>
+          <small class="group-error"></small>
+        </div>
+
+        <div class="form-group" data-field>
+          <label for="fasciaNotes">Specify where</label>
+          <textarea id="fasciaNotes" name="fasciaNotes" placeholder="List fascia sections needing work"></textarea>
+        </div>
+      </section>
+
+      <section>
+        <span class="section-meta">Section 9 of 10</span>
+        <h2>Recommended Materials</h2>
+        <div class="form-group" data-field data-required-group="materials" data-error="Select at least one material.">
+          <label>Select Materials <span class="required-star">*</span></label>
+          <div class="checkbox-grid">
+            <label class="option-pill">
+              <input type="checkbox" name="materials" value="Copper (Coastal Premium)">
+              <span>Copper (Coastal Premium)</span>
+            </label>
+            <label class="option-pill">
+              <input type="checkbox" name="materials" value="Aluminum (Balanced)">
+              <span>Aluminum (Balanced)</span>
+            </label>
+            <label class="option-pill">
+              <input type="checkbox" name="materials" value="Galvanized Steel (Rural Standard)">
+              <span>Galvanized Steel (Rural Standard)</span>
+            </label>
+          </div>
+          <small class="group-error"></small>
+        </div>
+      </section>
+
+      <section>
+        <span class="section-meta">Section 10 of 10</span>
+        <h2>Final Notes</h2>
+        <div class="form-group" data-field>
+          <label for="additionalObservations">Additional Observations</label>
+          <textarea id="additionalObservations" name="additionalObservations" placeholder="Any final notes or follow-up items"></textarea>
+        </div>
+      </section>
+
+      <div class="footer-info" aria-label="JV Roofing guarantees">
+        <h3>JV Roofing Guarantees & Certifications</h3>
+        <ul>
+          <li>10 Years Workmanship Guarantee</li>
+          <li>50 Years Material Warranty</li>
+          <li>Malarkey Certified</li>
+          <li>Workers' Compensation Insurance</li>
+          <li>General Liability Insurance</li>
+          <li>Commercial Auto Insurance</li>
+          <li>License # 1125194</li>
+        </ul>
+      </div>
+
+      <div class="submit-area">
+        <button type="submit">Submit Inspection</button>
+        <p class="form-note">Native submit button for GHL capture • Touch-friendly • High contrast</p>
+        <div class="success-message" id="successMessage">Thanks! Submission sent.</div>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    (function () {
+      const form = document.getElementById('jvRoofingForm');
+      const successMessage = document.getElementById('successMessage');
+      const textareasWithCounters = document.querySelectorAll('[data-counter]');
+
+      textareasWithCounters.forEach(textarea => {
+        const counterId = textarea.getAttribute('data-counter');
+        const counterEl = document.getElementById(counterId);
+        const maxLength = textarea.getAttribute('maxlength') || 500;
+
+        const updateCounter = () => {
+          const value = textarea.value.length;
+          counterEl.textContent = value + ' / ' + maxLength;
+        };
+
+        textarea.addEventListener('input', updateCounter);
+        updateCounter();
+      });
+
+      const focusNext = (current) => {
+        const nextSelector = current.getAttribute('data-next');
+        if (!nextSelector) return;
+        const nextField = form.querySelector(nextSelector);
+        if (nextField) {
+          setTimeout(() => nextField.focus(), 100);
+        }
+      };
+
+      const showStatus = (field, status) => {
+        const icon = field.querySelector('.status-icon');
+        const errorMessage = field.querySelector('.error-message');
+        if (!icon) return;
+        icon.classList.remove('valid', 'error');
+        if (status === 'valid') {
+          icon.textContent = '✔';
+          icon.classList.add('valid');
+          if (errorMessage) errorMessage.textContent = '';
+        } else if (status === 'error') {
+          icon.textContent = '!';
+          icon.classList.add('error');
+        } else {
+          icon.textContent = '';
+        }
+      };
+
+      const validateInputField = (field) => {
+        const input = field.querySelector('input, select, textarea');
+        if (!input) return true;
+        let isValid = true;
+        if (input.required) {
+          isValid = input.checkValidity();
+          if (input.type === 'textarea' || input.tagName === 'TEXTAREA') {
+            const minLength = input.getAttribute('minlength');
+            if (minLength && input.value.trim().length < Number(minLength)) {
+              isValid = false;
+              input.setCustomValidity('Please provide at least ' + minLength + ' characters.');
+            } else {
+              input.setCustomValidity('');
+            }
+          }
+        }
+
+        if (isValid) {
+          showStatus(field, 'valid');
+        } else {
+          const errorMsg = field.querySelector('.error-message');
+          if (errorMsg) {
+            errorMsg.textContent = input.validationMessage || 'This field is required.';
+          }
+          showStatus(field, 'error');
+        }
+        return isValid;
+      };
+
+      const validateRadioGroup = (group) => {
+        const radios = group.querySelectorAll('input[type="radio"]');
+        const errorEl = group.querySelector('.group-error');
+        const isChecked = Array.from(radios).some(radio => radio.checked);
+        if (isChecked) {
+          if (errorEl) errorEl.textContent = '';
+        } else {
+          if (errorEl) errorEl.textContent = group.dataset.error || 'Required field.';
+        }
+        return isChecked;
+      };
+
+      const validateCheckboxGroup = (group) => {
+        const checkboxes = group.querySelectorAll('input[type="checkbox"]');
+        const errorEl = group.querySelector('.group-error');
+        const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+        if (isChecked) {
+          if (errorEl) errorEl.textContent = '';
+        } else {
+          if (errorEl) errorEl.textContent = group.dataset.error || 'Select at least one option.';
+        }
+        return isChecked;
+      };
+
+      form.querySelectorAll('[data-field]').forEach(field => {
+        const input = field.querySelector('input, select, textarea');
+        if (!input) return;
+        const eventType = input.tagName === 'SELECT' ? 'change' : 'input';
+        input.addEventListener(eventType, () => {
+          validateInputField(field);
+        });
+        input.addEventListener('change', () => focusNext(input));
+      });
+
+      form.querySelectorAll('[data-type="radio"], [data-required-group]').forEach(group => {
+        const inputs = group.querySelectorAll('input');
+        inputs.forEach(input => {
+          input.addEventListener('change', () => {
+            if (input.type === 'radio') {
+              validateRadioGroup(group);
+            } else if (input.type === 'checkbox') {
+              validateCheckboxGroup(group);
+            }
+            focusNext(input);
+          });
+        });
+      });
+
+      form.addEventListener('submit', (event) => {
+        let formIsValid = true;
+
+        form.querySelectorAll('[data-field]').forEach(field => {
+          const input = field.querySelector('input, select, textarea');
+          if (input) {
+            const valid = validateInputField(field);
+            if (!valid) formIsValid = false;
+          }
+        });
+
+        form.querySelectorAll('[data-type="radio"]').forEach(group => {
+          if (!validateRadioGroup(group)) {
+            formIsValid = false;
+          }
+        });
+
+        form.querySelectorAll('[data-required-group]').forEach(group => {
+          const firstInput = group.querySelector('input');
+          if (firstInput && firstInput.type === 'radio') {
+            if (!validateRadioGroup(group)) formIsValid = false;
+          } else if (firstInput && firstInput.type === 'checkbox') {
+            if (!validateCheckboxGroup(group)) formIsValid = false;
+          }
+        });
+
+        if (!formIsValid) {
+          event.preventDefault();
+          successMessage.style.display = 'none';
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        } else {
+          successMessage.style.display = 'block';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
